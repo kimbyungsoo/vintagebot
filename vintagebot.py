@@ -1,7 +1,7 @@
 import win32gui, win32api, win32con, win32com.client
-import sys
+import sys, os
 import time
-import bonovista.bonovista
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn
 from importlib import reload
 import sqlite3 as lite
 
@@ -36,6 +36,7 @@ def diff_set(filename):
     cs = conn.cursor()
     query = "SELECT url FROM goods WHERE name NOT IN (SELECT DISTINCT name FROM old_goods)"
     updated_goods = cs.execute(query).fetchall()
+    conn.close()
     return list(updated_goods)
 
 def main():
@@ -44,13 +45,28 @@ def main():
         sys.setdefaultencoding("utf-8")
     
     bonovista.bonovista.main()
-
     updated_goods = diff_set('./bonovista/bonovista.db')
     for good in updated_goods:
     	print(good[0])
     	sendmsg('테스트', good[0])
 
-   
+    augustshop.augustshop.main()
+    updated_goods = diff_set('./augustshop/augustshop.db')
+    for good in updated_goods:
+    	print(good[0])
+    	sendmsg('테스트', good[0])    
+
+    matchmade.matchmade.main()
+    updated_goods = diff_set('./matchmade/matchmade.db')
+    for good in updated_goods:
+    	print(good[0])
+    	sendmsg('테스트', good[0])  
+
+    previn.previn.main()
+    updated_goods = diff_set('./previn/previn.db')
+    for good in updated_goods:
+    	print(good[0])
+    	sendmsg('테스트', good[0])  
 
 if __name__ == '__main__':
     main()

@@ -9,17 +9,17 @@ import json
 import sqlite3 as lite
 import time
 
-class AsyncBonovistaTask:
+class AsyncPrevinTask:
 	def __init__(self):
-		self.SHOP_URL = "http://www.bonovista.com"
-		self.frame = "/html/mainn.html?ref=http%3A%2F%2Fwww.bonovista.com%2F"
+		self.SHOP_URL = "http://www.previn.co.kr/shop/shopbrand.html?type=P&xcode=010&sort=&page=1"
+		self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
 		self.goods = []
 	def requesUrl(self):
-		list_html = requests.get(url=self.SHOP_URL+self.frame).content
+		list_html = requests.get(url=self.SHOP_URL, headers = self.headers).content
 		list_lxml = BeautifulSoup(list_html, 'lxml', from_encoding = 'utf-8')
-		url_list = [i.get('href') for i in list_lxml.select('#imglink')]
-		img_list = [i.get('src') for i in list_lxml.select('#imglink img')]
-		name_list = [i.find_all(text=True)[0] for i in list_lxml.select('tr.main_brandname2 td a font')]
+		url_list = [self.SHOP_URL+i.get('href') for i in list_lxml.select('div.box > div.prd-thumb > a')]
+		img_list = ['http:'+i.get('src') for i in list_lxml.select('div.box > div.prd-thumb > a > img')]
+		name_list = [i.find_all(text=True)[0] for i in list_lxml.select('li.prd-name')]
 		for i in range(len(url_list)):
 			self.goods.append({'url' : url_list[i], 'img' : img_list[i], 'name' : name_list[i]})
 		self.saveDB()
@@ -28,7 +28,7 @@ class AsyncBonovistaTask:
 		if len(self.goods) == 0:
 			print("goods is empty")
 		else:
-			database_filename = './bonovista/bonovista.db'
+			database_filename = './previn/previn.db'
 			conn = lite.connect(database_filename)
 			cs = conn.cursor()
 			#DROP
@@ -48,8 +48,8 @@ class AsyncBonovistaTask:
 			conn.close()
 
 def main():
-	print ('Bonovista bot start')
-	BT = AsyncBonovistaTask()
+	print ('Previn bot start')
+	BT = AsyncPrevinTask()
 	BT.requesUrl()
 	#threading.Timer(60, BT.requesUrl()).start() 
 
