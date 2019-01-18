@@ -22,12 +22,12 @@ def sendmsg(roomname, msg):
     win32gui.SetForegroundWindow(hWnd)
     time.sleep(0.5)
     #win32api.SetCursorPos((904,512))
-    mouse_click(904,512)
+    mouse_click(3112,896)
     time.sleep(1)
     shell.SendKeys(msg)
     time.sleep(1)
     #shell.SendKeys('{ENTER}')
-    mouse_click(1199,512)
+    mouse_click(3155,891)
     time.sleep(1)
 
 
@@ -46,27 +46,31 @@ def main():
     
     bonovista.bonovista.main()
     updated_goods = diff_set('./bonovista/bonovista.db')
-    for good in updated_goods:
-    	print(good[0])
-    	sendmsg('테스트', good[0])
+    if len(updated_goods) != 0:
+    	msg = "bonovista + products have been updated : http://www.bonovista.com/"
+    	print(msg)
+    	sendmsg('테스트', msg = "bonovista + products have been updated : http://www.bonovista.com/")
 
     augustshop.augustshop.main()
     updated_goods = diff_set('./augustshop/augustshop.db')
-    for good in updated_goods:
-    	print(good[0])
-    	sendmsg('테스트', good[0])    
+    if len(updated_goods) != 0:
+    	msg = "augustshop + products have been updated : http://august-shop.kr"
+    	print(msg)
+    	sendmsg('테스트', msg = "augustshop + products have been updated : http://august-shop.kr")
 
     matchmade.matchmade.main()
     updated_goods = diff_set('./matchmade/matchmade.db')
-    for good in updated_goods:
-    	print(good[0])
-    	sendmsg('테스트', good[0])  
+    if len(updated_goods) != 0:
+    	msg = "matchmade + products have been updated : http://match-made.co.kr/"
+    	print(msg)
+    	sendmsg('테스트', msg = "matchmade + products have been updated : http://match-made.co.kr/") 
 
     previn.previn.main()
     updated_goods = diff_set('./previn/previn.db')
-    for good in updated_goods:
-    	print(good[0])
-    	sendmsg('테스트', good[0])  
+    if len(updated_goods) != 0:
+    	msg = "previn + products have been updated : http://www.previn.co.kr/"
+    	print(msg)
+    	sendmsg('테스트', msg = "previn + products have been updated : http://www.previn.co.kr/")
 
 if __name__ == '__main__':
     main()
