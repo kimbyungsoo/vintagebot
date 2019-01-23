@@ -1,9 +1,10 @@
 import win32gui, win32api, win32con, win32com.client
 import sys, os
 import time
-import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad
 from importlib import reload
 import sqlite3 as lite
+from time import ctime
 
 def window_handle_Title(Title):
     handle = win32gui.FindWindow(None, Title)
@@ -40,6 +41,7 @@ def diff_set(filename):
     return list(updated_goods)
 
 def main():
+	print(ctime())
     if sys.version[0] == '2':
         reload(sys)
         sys.setdefaultencoding("utf-8")
@@ -49,28 +51,42 @@ def main():
     if len(updated_goods) != 0:
     	msg = "bonovista + products have been updated : http://www.bonovista.com/"
     	print(msg)
-    	sendmsg('테스트', msg = "bonovista + products have been updated : http://www.bonovista.com/")
+    	sendmsg('heavydutyclub', msg = "bonovista + products have been updated : http://www.bonovista.com/")
 
     augustshop.augustshop.main()
     updated_goods = diff_set('./augustshop/augustshop.db')
     if len(updated_goods) != 0:
     	msg = "augustshop + products have been updated : http://august-shop.kr"
     	print(msg)
-    	sendmsg('테스트', msg = "augustshop + products have been updated : http://august-shop.kr")
+    	sendmsg('heavydutyclub', msg = "augustshop + products have been updated : http://august-shop.kr")
 
     matchmade.matchmade.main()
     updated_goods = diff_set('./matchmade/matchmade.db')
     if len(updated_goods) != 0:
     	msg = "matchmade + products have been updated : http://match-made.co.kr/"
     	print(msg)
-    	sendmsg('테스트', msg = "matchmade + products have been updated : http://match-made.co.kr/") 
+    	#sendmsg('heavydutyclub', msg = "matchmade + products have been updated : http://match-made.co.kr/") 
 
     previn.previn.main()
     updated_goods = diff_set('./previn/previn.db')
     if len(updated_goods) != 0:
     	msg = "previn + products have been updated : http://www.previn.co.kr/"
     	print(msg)
-    	sendmsg('테스트', msg = "previn + products have been updated : http://www.previn.co.kr/")
+    	sendmsg('heavydutyclub', msg = "previn + products have been updated : http://www.previn.co.kr/")
+
+    oddpeople.oddpeople.main()
+    updated_goods = diff_set('./oddpeople/oddpeople.db')
+    if len(updated_goods) != 0:
+    	msg = "oddpeople + products have been updated : http://oddpeople.kr/"
+    	print(msg)
+    	sendmsg('heavydutyclub', msg = "oddpeople + products have been updated : http://oddpeople.kr/")
+
+    rocketsalad.rocketsalad.main()
+    updated_goods = diff_set('./rocketsalad/rocketsalad.db')
+    if len(updated_goods) != 0:
+    	msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/"
+    	print(msg)
+    	sendmsg('heavydutyclub', msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/")
 
 if __name__ == '__main__':
     main()
