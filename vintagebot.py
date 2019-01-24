@@ -1,7 +1,7 @@
 import win32gui, win32api, win32con, win32com.client
 import sys, os
 import time
-import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente
 from importlib import reload
 import sqlite3 as lite
 from time import ctime
@@ -19,7 +19,7 @@ def sendmsg(roomname, msg):
     hWnd = window_handle_Title(roomname)
     win32gui.SetForegroundWindow(hWnd)
     shell = win32com.client.Dispatch("WScript.Shell")
-    #shell.SendKeys('%')
+    shell.SendKeys('%')
     win32gui.SetForegroundWindow(hWnd)
     time.sleep(0.5)
     #win32api.SetCursorPos((904,512))
@@ -40,60 +40,43 @@ def diff_set(filename):
     conn.close()
     return list(updated_goods)
 
+def run(room, name, url):
+    db = './'+name+'/'+name+'.db'
+    updated_goods = diff_set(db)
+    if len(updated_goods) != 0:
+    	msg = name + "products have been updated : "+url
+    	print(msg)
+    	sendmsg(room, msg = msg)
+
+site_list = [
+    		{'room':'heavydutyclub', 'name':'bonovista', 'url':'http://www.bonovista.com/'}
+    		, {'room':'heavydutyclub', 'name':'augustshop', 'url':'http://august-shop.kr'}
+    		, {'room':'테스트', 'name':'matchmade', 'url':'http://match-made.co.kr/'}
+    		, {'room':'heavydutyclub', 'name':'previn', 'url':'http://www.previn.co.kr/'}
+    		, {'room':'heavydutyclub', 'name':'oddpeople', 'url':'http://oddpeople.kr/'}
+    		, {'room':'테스트', 'name':'rocketsalad', 'url':'http://www.rocketsalad.co.kr/'}
+    		, {'room':'테스트', 'name':'stayfree', 'url':'http://stay-free.co.kr/'}
+    		, {'room':'테스트', 'name':'festinalente', 'url':'http://www.festinalente.kr/'}
+    		]
+
+
 def main():
     print(ctime())
     if sys.version[0] == '2':
         reload(sys)
         sys.setdefaultencoding("utf-8")
-    
+
     bonovista.bonovista.main()
-    updated_goods = diff_set('./bonovista/bonovista.db')
-    if len(updated_goods) != 0:
-    	msg = "bonovista + products have been updated : http://www.bonovista.com/"
-    	print(msg)
-    	sendmsg('heavydutyclub', msg = "bonovista + products have been updated : http://www.bonovista.com/")
-
     augustshop.augustshop.main()
-    updated_goods = diff_set('./augustshop/augustshop.db')
-    if len(updated_goods) != 0:
-    	msg = "augustshop + products have been updated : http://august-shop.kr"
-    	print(msg)
-    	sendmsg('테스트', msg = "augustshop + products have been updated : http://august-shop.kr")
-
     matchmade.matchmade.main()
-    updated_goods = diff_set('./matchmade/matchmade.db')
-    if len(updated_goods) != 0:
-    	msg = "matchmade + products have been updated : http://match-made.co.kr/"
-    	print(msg)
-    	sendmsg('테스트', msg = "matchmade + products have been updated : http://match-made.co.kr/") 
-
     previn.previn.main()
-    updated_goods = diff_set('./previn/previn.db')
-    if len(updated_goods) != 0:
-    	msg = "previn + products have been updated : http://www.previn.co.kr/"
-    	print(msg)
-    	sendmsg('heavydutyclub', msg = "previn + products have been updated : http://www.previn.co.kr/")
-
     oddpeople.oddpeople.main()
-    updated_goods = diff_set('./oddpeople/oddpeople.db')
-    if len(updated_goods) != 0:
-    	msg = "oddpeople + products have been updated : http://oddpeople.kr/"
-    	print(msg)
-    	sendmsg('heavydutyclub', msg = "oddpeople + products have been updated : http://oddpeople.kr/")
-
     rocketsalad.rocketsalad.main()
-    updated_goods = diff_set('./rocketsalad/rocketsalad.db')
-    if len(updated_goods) != 0:
-    	msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/"
-    	print(msg)
-    	sendmsg('테스트', msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/")
-
     stayfree.stayfree.main()
-    updated_goods = diff_set('./stayfree/stayfree.db')
-    if len(updated_goods) != 0:
-    	msg = "stayfree + products have been updated : http://stay-free.co.kr/"
-    	print(msg)
-    	sendmsg('테스트', msg = "stayfree + products have been updated : http://stay-free.co.kr/")
+    festinalente.festinalente.main()
+
+    for site in site_list:
+    	run(site['room'], site['name'], site['url'])
 
 if __name__ == '__main__':
     main()
