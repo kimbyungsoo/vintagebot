@@ -1,7 +1,7 @@
 import win32gui, win32api, win32con, win32com.client
 import sys, os
 import time
-import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree
 from importlib import reload
 import sqlite3 as lite
 from time import ctime
@@ -35,13 +35,13 @@ def sendmsg(roomname, msg):
 def diff_set(filename):
     conn = lite.connect(filename)
     cs = conn.cursor()
-    query = "SELECT url FROM goods WHERE name NOT IN (SELECT DISTINCT name FROM old_goods)"
+    query = "SELECT url FROM goods WHERE img NOT IN (SELECT DISTINCT img FROM old_goods)"
     updated_goods = cs.execute(query).fetchall()
     conn.close()
     return list(updated_goods)
 
 def main():
-	print(ctime())
+    print(ctime())
     if sys.version[0] == '2':
         reload(sys)
         sys.setdefaultencoding("utf-8")
@@ -58,14 +58,14 @@ def main():
     if len(updated_goods) != 0:
     	msg = "augustshop + products have been updated : http://august-shop.kr"
     	print(msg)
-    	sendmsg('heavydutyclub', msg = "augustshop + products have been updated : http://august-shop.kr")
+    	sendmsg('테스트', msg = "augustshop + products have been updated : http://august-shop.kr")
 
     matchmade.matchmade.main()
     updated_goods = diff_set('./matchmade/matchmade.db')
     if len(updated_goods) != 0:
     	msg = "matchmade + products have been updated : http://match-made.co.kr/"
     	print(msg)
-    	#sendmsg('heavydutyclub', msg = "matchmade + products have been updated : http://match-made.co.kr/") 
+    	sendmsg('테스트', msg = "matchmade + products have been updated : http://match-made.co.kr/") 
 
     previn.previn.main()
     updated_goods = diff_set('./previn/previn.db')
@@ -86,7 +86,14 @@ def main():
     if len(updated_goods) != 0:
     	msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/"
     	print(msg)
-    	sendmsg('heavydutyclub', msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/")
+    	sendmsg('테스트', msg = "rocketsalad + products have been updated : http://www.rocketsalad.co.kr/")
+
+    stayfree.stayfree.main()
+    updated_goods = diff_set('./stayfree/stayfree.db')
+    if len(updated_goods) != 0:
+    	msg = "stayfree + products have been updated : http://stay-free.co.kr/"
+    	print(msg)
+    	sendmsg('테스트', msg = "stayfree + products have been updated : http://stay-free.co.kr/")
 
 if __name__ == '__main__':
     main()
