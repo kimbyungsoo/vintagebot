@@ -16,6 +16,7 @@ def mouse_click(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
 
 def sendmsg(roomname, msg):
+    print(roomname)
     hWnd = window_handle_Title(roomname)
     win32gui.SetForegroundWindow(hWnd)
     shell = win32com.client.Dispatch("WScript.Shell")
@@ -44,19 +45,19 @@ def run(room, name, url):
     db = './'+name+'/'+name+'.db'
     updated_goods = diff_set(db)
     if len(updated_goods) != 0:
-    	msg = name + "products have been updated : "+url
+    	msg = name + " products have been updated : "+url
     	print(msg)
     	sendmsg(room, msg = msg)
 
 site_list = [
     		{'room':'heavydutyclub', 'name':'bonovista', 'url':'http://www.bonovista.com/'}
     		, {'room':'heavydutyclub', 'name':'augustshop', 'url':'http://august-shop.kr'}
-    		, {'room':'테스트', 'name':'matchmade', 'url':'http://match-made.co.kr/'}
+    		, {'room':'heavydutyclub', 'name':'matchmade', 'url':'http://match-made.co.kr/'}
     		, {'room':'heavydutyclub', 'name':'previn', 'url':'http://www.previn.co.kr/'}
     		, {'room':'heavydutyclub', 'name':'oddpeople', 'url':'http://oddpeople.kr/'}
-    		, {'room':'테스트', 'name':'rocketsalad', 'url':'http://www.rocketsalad.co.kr/'}
-    		, {'room':'테스트', 'name':'stayfree', 'url':'http://stay-free.co.kr/'}
-    		, {'room':'테스트', 'name':'festinalente', 'url':'http://www.festinalente.kr/'}
+    		#, {'room':'heavydutyclub', 'name':'rocketsalad', 'url':'http://www.rocketsalad.co.kr/'}
+    		, {'room':'heavydutyclub', 'name':'stayfree', 'url':'http://stay-free.co.kr/'}
+    		, {'room':'heavydutyclub', 'name':'festinalente', 'url':'http://www.festinalente.kr/'}
     		]
 
 

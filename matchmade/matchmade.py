@@ -45,7 +45,7 @@ class AsyncMatchmadeTask:
 			cs.execute(query)
 			for good in self.goods:
 				query = "INSERT into goods (name,url,img) values (?, ?, ?)"
-				cs.execute(query,(str(good['name']), str(self.SHOP_URL+good['url']),str(self.SHOP_URL+good['img'])))
+				cs.execute(query,(str(good['name']), str(good['url']),str(good['img'])))
 			conn.commit()
 			print("good is updated")
 			conn.close()
