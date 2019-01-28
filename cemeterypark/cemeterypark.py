@@ -52,6 +52,7 @@ def main():
 	BT = AsyncCemeteryparkTask()
 	BT.requesUrl()
 	#threading.Timer(60, BT.requesUrl()).start() 
+	return 0
 
 if __name__ == '__main__':
 	main()
