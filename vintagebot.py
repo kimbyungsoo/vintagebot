@@ -1,7 +1,7 @@
 import win32gui, win32api, win32con, win32com.client
 import sys, os
 import time
-import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente, wildhogs.wildhogs, cemeterypark.cemeterypark
 from importlib import reload
 import sqlite3 as lite
 from time import ctime
@@ -16,13 +16,12 @@ def mouse_click(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
 
 def sendmsg(roomname, msg):
-    print(roomname)
-    hWnd = window_handle_Title(roomname)
-    win32gui.SetForegroundWindow(hWnd)
-    shell = win32com.client.Dispatch("WScript.Shell")
-    shell.SendKeys('%')
-    win32gui.SetForegroundWindow(hWnd)
-    time.sleep(0.5)
+    #hWnd = window_handle_Title(roomname)
+    #win32gui.SetForegroundWindow(hWnd)
+    #shell = win32com.client.Dispatch("WScript.Shell")
+    #shell.SendKeys('%')
+    #win32gui.SetForegroundWindow(hWnd)
+    #time.sleep(0.5)
     #win32api.SetCursorPos((904,512))
     mouse_click(3112,896)
     time.sleep(1)
@@ -58,6 +57,8 @@ site_list = [
     		#, {'room':'heavydutyclub', 'name':'rocketsalad', 'url':'http://www.rocketsalad.co.kr/'}
     		, {'room':'heavydutyclub', 'name':'stayfree', 'url':'http://stay-free.co.kr/'}
     		, {'room':'heavydutyclub', 'name':'festinalente', 'url':'http://www.festinalente.kr/'}
+    		, {'room':'heavydutyclub', 'name':'wildhogs', 'url':'http://www.wildhogs.co.kr/'}
+    		, {'room':'heavydutyclub', 'name':'cemeterypark', 'url':'http://cemeterypark.kr/'}
     		]
 
 
@@ -75,6 +76,8 @@ def main():
     rocketsalad.rocketsalad.main()
     stayfree.stayfree.main()
     festinalente.festinalente.main()
+    wildhogs.wildhogs.main()
+    cemeterypark.cemeterypark.main()
 
     for site in site_list:
     	run(site['room'], site['name'], site['url'])
