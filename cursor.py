@@ -1,3 +1,6 @@
 import win32api
-while(1):
+from time import sleep
+while True:
 	print(win32api.GetCursorPos())
+	sleep(0.5)
+	
