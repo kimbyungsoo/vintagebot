@@ -9,7 +9,7 @@ import json
 import sqlite3 as lite
 import time
 
-class Async1000mileTask:
+class AsyncChunmileTask:
 	def __init__(self):
 		self.SHOP_URL = "http://m.1000mile.co.kr/"
 		self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
@@ -28,7 +28,7 @@ class Async1000mileTask:
 		if len(self.goods) == 0:
 			print("goods is empty")
 		else:
-			database_filename = './1000mile/1000mile.db'
+			database_filename = './chunmile/chunmile.db'
 			conn = lite.connect(database_filename)
 			cs = conn.cursor()
 			#DROP
@@ -49,7 +49,7 @@ class Async1000mileTask:
 
 def main():
 	print ('1000mile bot start')
-	BT = Async1000mileTask()
+	BT = AsyncChunmileTask()
 	BT.requesUrl()
 	#threading.Timer(60, BT.requesUrl()).start() 
 	return 0
