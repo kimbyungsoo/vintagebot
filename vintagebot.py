@@ -1,6 +1,6 @@
 import win32gui, win32api, win32con, win32com.client
 import sys, os
-import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente, wildhogs.wildhogs, cemeterypark.cemeterypark, chunmile.chunmile
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente, wildhogs.wildhogs, cemeterypark.cemeterypark, chunmile.chunmile, radiosonyon.radiosonyon, anotherdrink.anotherdrink
 from importlib import reload
 import sqlite3 as lite
 from time import ctime, sleep
@@ -62,6 +62,8 @@ site_list = [
     		, {'room':'heavydutyclub', 'name':'wildhogs', 'url':'http://www.wildhogs.co.kr/', 'module' : wildhogs.wildhogs}
     		, {'room':'heavydutyclub', 'name':'cemeterypark', 'url':'http://cemeterypark.kr/', 'module' : cemeterypark.cemeterypark}
     		, {'room':'heavydutyclub', 'name':'chunmile', 'url':'http://1000mile.co.kr/', 'module' : chunmile.chunmile}
+            , {'room':'heavydutyclub', 'name':'radiosonyon', 'url':'http://m.radiosonyon.com/', 'module' : radiosonyon.radiosonyon}
+            , {'room':'heavydutyclub', 'name':'anotherdrink', 'url':'http://m.anotherdrink.kr/', 'module' : anotherdrink.anotherdrink}
             ]
 
 
