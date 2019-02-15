@@ -1,6 +1,6 @@
 import win32gui, win32api, win32con, win32com.client
 import sys, os
-import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente, wildhogs.wildhogs, cemeterypark.cemeterypark
+import bonovista.bonovista, augustshop.augustshop, matchmade.matchmade, previn.previn, oddpeople.oddpeople, rocketsalad.rocketsalad, stayfree.stayfree, festinalente.festinalente, wildhogs.wildhogs, cemeterypark.cemeterypark, chunmile.chunmile
 from importlib import reload
 import sqlite3 as lite
 from time import ctime, sleep
@@ -22,12 +22,12 @@ def sendmsg(room, msg):
     shell = win32com.client.Dispatch("WScript.Shell")
     shell.SendKeys('%')
     win32gui.SetForegroundWindow(hWnd)
-    mouse_click(3112,896)
+    mouse_click(639, 756)
     sleep(1)
     shell.SendKeys(msg)
     sleep(1)
     #shell.SendKeys('{ENTER}')
-    mouse_click(3155,891)
+    mouse_click(733, 742)
     sleep(1)
     return True
 
@@ -51,18 +51,18 @@ def run(room, name, url):
     return True
 
 site_list = [
-
     		{'room':'heavydutyclub', 'name':'bonovista', 'url':'http://www.bonovista.com/', 'module' : bonovista.bonovista}
     		, {'room':'heavydutyclub', 'name':'augustshop', 'url':'http://august-shop.kr', 'module' : augustshop.augustshop}
     		, {'room':'heavydutyclub', 'name':'matchmade', 'url':'http://match-made.co.kr/', 'module' : matchmade.matchmade}
     		, {'room':'heavydutyclub', 'name':'previn', 'url':'http://www.previn.co.kr/', 'module' : previn.previn}
     		, {'room':'heavydutyclub', 'name':'oddpeople', 'url':'http://oddpeople.kr/', 'module' : oddpeople.oddpeople}
-    		#, {'room':'테스트', 'name':'rocketsalad', 'url':'http://www.rocketsalad.co.kr/', 'module' : rocketsalad.rocketsalad}
+    		#, {'room':'김병수', 'name':'rocketsalad', 'url':'http://www.rocketsalad.co.kr/', 'module' : rocketsalad.rocketsalad}
     		, {'room':'heavydutyclub', 'name':'stayfree', 'url':'http://stay-free.co.kr/', 'module' : stayfree.stayfree}
     		, {'room':'heavydutyclub', 'name':'festinalente', 'url':'http://www.festinalente.kr/', 'module' : festinalente.festinalente}
     		, {'room':'heavydutyclub', 'name':'wildhogs', 'url':'http://www.wildhogs.co.kr/', 'module' : wildhogs.wildhogs}
     		, {'room':'heavydutyclub', 'name':'cemeterypark', 'url':'http://cemeterypark.kr/', 'module' : cemeterypark.cemeterypark}
-    		]
+    		, {'room':'heavydutyclub', 'name':'chunmile', 'url':'http://1000mile.co.kr/', 'module' : chunmile.chunmile}
+            ]
 
 
 def main():

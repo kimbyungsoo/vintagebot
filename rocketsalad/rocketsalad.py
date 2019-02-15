@@ -20,7 +20,7 @@ class AsyncRocketsaladTask:
 		url_list = [self.SHOP_URL+i.get('href') for i in list_lxml.select('dd.link-view a')]
 		img_list = ['http:'+i.get('src') for i in list_lxml.select('img.MS_prod_mobile_image')]
 		name_list = [i.find_all(text=True)[0] for i in list_lxml.select('dd.pname')]
-		subname_list = [i.find_all(text=True)[0] for i in list_lxml.select('dd.psubname')]
+		subname_list = [i.find_all(text=True)[0] for i in list_lxml.select('div.wrapper > ul.items > li > dl > dd.psubname')]
 		if len(url_list) == len(img_list) == len(name_list) == len(subname_list):
 			for i in range(len(url_list)):
 				self.goods.append({'url' : url_list[i], 'img' : img_list[i], 'name' : name_list[i] +' '+subname_list[i]})
